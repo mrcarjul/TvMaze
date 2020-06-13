@@ -1,21 +1,24 @@
 import React from 'react';
-import {StatusBar, StyleSheet, View} from 'react-native';
 
+// Core
+import {View} from 'react-native';
+
+// Personalized components
+import {TvMazeStatusbar} from './src/components';
+
+// Navigation
 import AppNavigator from './src/navigation';
+
+// Utils
+import {genericStyles} from './src/utils';
 
 function App() {
   return (
-    <View style={styles.mainContainer}>
-      <StatusBar barStyle="dark-content" />
+    <View style={genericStyles.container}>
+      <TvMazeStatusbar />
       <AppNavigator />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  mainContainer: {
-    flex: 1,
-  },
-});
 
 export default App;
