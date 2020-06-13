@@ -12,12 +12,20 @@ import AppNavigator from './src/navigation';
 // Utils
 import {genericStyles} from './src/utils';
 
+// Redux
+import {Provider} from 'react-redux';
+import createStore from './src/redux/index';
+
+export const {store} = createStore();
+
 function App() {
   return (
-    <View style={genericStyles.container}>
-      <TvMazeStatusbar />
-      <AppNavigator />
-    </View>
+    <Provider store={store}>
+      <View style={genericStyles.container}>
+        <TvMazeStatusbar />
+        <AppNavigator />
+      </View>
+    </Provider>
   );
 }
 
