@@ -21,9 +21,10 @@ export const requestDataFailure = errorMsg => ({
   type: REQUEST_DATA_FAILURE,
   errorMsg,
 });
-export const requestShowsDataSuccess = payload => ({
+export const requestShowsDataSuccess = (payload, page) => ({
   type: REQUEST_SHOWS_DATA_SUCCESS,
   payload,
+  page,
 });
 export const requestShowsEpisodesDataSuccess = payload => ({
   type: REQUEST_SHOWS_EPISODES_DATA_SUCCESS,
@@ -59,7 +60,7 @@ export const getShowsByPageAction = page => async dispatch => {
           ),
         );
       }
-      dispatch(requestShowsDataSuccess(showsPayload));
+      dispatch(requestShowsDataSuccess(showsPayload, page + 1));
     } else {
       dispatch(requestDataFailure('Error: There was an Error in API response'));
     }
