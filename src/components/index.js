@@ -1,3 +1,4 @@
+import Show from './Show';
 import TvMazeStatusbar from './TvMazeStatusbar';
 
-export {TvMazeStatusbar};
+export {Show, TvMazeStatusbar};
