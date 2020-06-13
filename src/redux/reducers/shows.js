@@ -34,7 +34,10 @@ export default function shows(state = initialState, action) {
     case REQUEST_SHOWS_DATA_SUCCESS:
       return {
         ...state,
-        shows: action.payload,
+        shows:
+          action.page > state.page
+            ? [...state.shows, action.payload]
+            : action.payload,
         fetching: false,
         error: null,
         errorMsg: null,
