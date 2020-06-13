@@ -32,11 +32,12 @@ export const requestShowsEpisodesDataSuccess = payload => ({
 });
 
 /**
- * @description Checks if api response is as expected
+ * @description Checks sample off api response to review if is as expected
  * @param {object} payload containing api response
  */
 const validateApiResponse = payload => {
-  const {id, name, url, genres, premiered, rating, image, summary} = payload;
+  const {id, name, url, genres, premiered, rating, image, summary} =
+    payload || {};
   if (id && name && url && genres && premiered && rating && image && summary) {
     return false;
   }
@@ -53,7 +54,8 @@ export const getShowsByPageAction = page => async dispatch => {
     debugger;
     if (response?.data) {
       const showsPayload = response.data;
-      if (validateApiResponse(showsPayload)) {
+      const samplePayload = showsPayload?.length ? showsPayload[0] : {};
+      if (validateApiResponse(samplePayload)) {
         dispatch(
           requestDataFailure(
             'Could not Retrive Shows Info for the moment, please try again later',
@@ -83,7 +85,8 @@ export const getShowsByQueryAction = query => async dispatch => {
     debugger;
     if (response?.data) {
       const showsPayload = response.data;
-      if (validateApiResponse(showsPayload)) {
+      const samplePayload = showsPayload?.length ? showsPayload[0] : {};
+      if (validateApiResponse(samplePayload)) {
         dispatch(requestDataFailure(badResponse));
         return;
       }
