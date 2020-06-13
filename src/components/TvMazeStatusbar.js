@@ -12,9 +12,15 @@ import {
 // External libs
 import {getStatusBarHeight} from 'react-native-status-bar-height';
 
+/**
+ * @description Component in charge of status bar managment doing the right calculations
+ */
 function TvMazeStatusbar() {
   const [statusbarHeight, setStatusbarHeight] = useState(getStatusBarHeight());
 
+  /**
+   * @description effect needed for ios to detect changes in status bar due to shared hotspot or others
+   */
   useEffect(() => {
     const {StatusBarManager} = NativeModules;
     if (Platform.OS === 'ios') {
