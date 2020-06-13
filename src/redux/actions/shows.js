@@ -105,8 +105,8 @@ export const getShowEpisodesByIdAction = id => async dispatch => {
     const response = await getShowEpisodesById(id);
     debugger;
     if (response?.data) {
-      const showsPayload = response.data; // Only get the data to used
-      dispatch(requestShowsEpisodesDataSuccess(showsPayload));
+      const episodesPayload = response.data; // Only get the data to used
+      dispatch(requestShowsEpisodesDataSuccess(episodesPayload));
     } else {
       dispatch(requestDataFailure(badResponse));
     }
