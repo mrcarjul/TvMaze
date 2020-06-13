@@ -22,7 +22,7 @@ const create = (baseURL = API_URL) => {
    * @description Requests Shows by Query String
    * @param {query} query
    */
-  const getShowsByQuery = query => api.get(`/shows?q=${query}`);
+  const getShowsByQuery = query => api.get(`/search/shows?q=${query}`);
 
   /**
    * @description Requests Shows Episodes information by Show Id
