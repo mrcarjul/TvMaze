@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 
 // Core
 import {FlatList, StyleSheet, Text, View} from 'react-native';
 
 // Personalized components
-import {ListLoader, Show} from '../components';
+import {ListLoader, ScrollToTopFab, Show} from '../components';
 
 // Utils
 import {fonts, getThemeColors, genericStyles, metrics} from '../utils';
@@ -19,6 +19,7 @@ const ITEM_HEIGHT = metrics.width / 2 / metrics.imageRatio + 150;
  * @description The purpose of the screen is to be the main screen to display shows list
  */
 function ShowsScreen() {
+  const flatListRef = useRef(null);
   const {error, errorMsg, fetching, shows, page} = useSelector(
     state => state.shows,
   );
@@ -43,26 +44,30 @@ function ShowsScreen() {
   return (
     <View style={[styles.container, {backgroundColor: colors.backgroundAlt}]}>
       <Text style={textStyle.centeredTitle}>Shows</Text>
-      <FlatList
-        initialNumToRender={10}
-        maxToRenderPerBatch={10}
-        data={shows}
-        keyExtractor={show => show.id}
-        renderItem={({item}) => (
-          <Show
-            index={item.id}
-            colors={colors}
-            name={item.name}
-            poster={item.image}
-          />
-        )}
-        onEndReached={requestMoreShows}
-        getItemLayout={(data, index) => {
-          return {length: ITEM_HEIGHT, offset: ITEM_HEIGHT * index, index};
-        }}
-        windowSize={5}
-      />
-      {fetching && <ListLoader fetching={fetching} />}
+      <View style={styles.container}>
+        <FlatList
+          ref={flatListRef}
+          initialNumToRender={10}
+          maxToRenderPerBatch={10}
+          data={shows}
+          keyExtractor={show => show.id}
+          renderItem={({item}) => (
+            <Show
+              index={item.id}
+              colors={colors}
+              name={item.name}
+              poster={item.image}
+            />
+          )}
+          onEndReached={requestMoreShows}
+          getItemLayout={(data, index) => {
+            return {length: ITEM_HEIGHT, offset: ITEM_HEIGHT * index, index};
+          }}
+          windowSize={5}
+        />
+        <ListLoader fetching={fetching} />
+        <ScrollToTopFab flatListRef={flatListRef} />
+      </View>
     </View>
   );
 }
