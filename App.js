@@ -1,10 +1,13 @@
 import React from 'react';
 
 // Core
-import {View} from 'react-native';
+import {View, Platform} from 'react-native';
 
 // Personalized components
 import {TvMazeStatusbar} from './src/components';
+
+// External Libs
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 // Navigation
 import AppNavigator from './src/navigation';
@@ -19,6 +22,11 @@ import createStore from './src/redux/index';
 export const {store} = createStore();
 
 function App() {
+  // Preload icons
+  if (Platform.OS === 'ios') {
+    AntDesign.loadFont();
+  }
+
   return (
     <Provider store={store}>
       <View style={genericStyles.container}>
