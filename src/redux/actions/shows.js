@@ -75,7 +75,7 @@ export const getShowsByPageAction = page => async dispatch => {
 };
 
 /**
- * @description Calls api to retrieve shows questions
+ * @description Calls api to retrieve shows questions by given query string
  */
 export const getShowsByQueryAction = query => async dispatch => {
   try {
@@ -83,19 +83,20 @@ export const getShowsByQueryAction = query => async dispatch => {
     const response = await getShowsByQuery(query);
     if (response?.data) {
       const showsPayload = response.data;
-      const samplePayload = showsPayload?.length ? showsPayload[0] : {};
+      const samplePayload = showsPayload?.length ? showsPayload[0]?.show : {};
       if (validateApiResponse(samplePayload) && !showsPayload?.length === 0) {
         dispatch(requestDataFailure(badResponse));
         return;
       }
-      dispatch(requestShowsDataSuccess(showsPayload));
+      dispatch(
+        requestShowsDataSuccess(showsPayload.map(showData => showData.show)),
+      );
     } else {
       dispatch(requestDataFailure(badResponse));
     }
   } catch (error) {
     dispatch(requestDataFailure(networkError));
   }
-  ƒ;
 };
 
 /**
