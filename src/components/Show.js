@@ -3,27 +3,52 @@ import React from 'react';
 // Core
 import {Image, StyleSheet, Text, View} from 'react-native';
 
-// Utils
-import {genericStyles} from '../utils';
+// External libs
+import FastImage from 'react-native-fast-image';
 
-function Show({name, poster}) {
-  return (
-    <View style={[styles.showContainer, styles.centerContents]}>
-      <Image source={{uri: poster?.medium}} style={styles.imageStyle} />
-      <Text>{name}</Text>
-    </View>
-  );
+// Utils
+import {fonts, genericStyles, metrics} from '../utils';
+
+class Show extends React.PureComponent {
+  render() {
+    const {colors, index, name, poster} = this.props;
+    const {textStyle} = fonts;
+    return (
+      <View style={[styles.showContainer, styles.centerContents]}>
+        <FastImage
+          resizeMode={FastImage.resizeMode.contain}
+          source={{uri: poster?.medium}}
+          style={styles.imageStyle}
+        />
+        <View
+          style={[
+            styles.titleContainer,
+            styles.centerContents,
+            {backgroundColor: colors.background},
+          ]}>
+          <Text style={[textStyle.description, {color: colors.textAlt}]}>
+            {name} - {index}
+          </Text>
+        </View>
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
   ...genericStyles,
   imageStyle: {
-    height: 295,
-    width: 210,
+    height: metrics.width / 2 / metrics.imageRatio,
+    width: metrics.width / 2,
   },
   showContainer: {
     paddingVertical: 15,
   },
+  titleContainer: {
+    minHeight: 120,
+    padding: 10,
+    width: metrics.width / 2,
+  },
 });
 
-export default Show;
+export default React.memo(Show);
