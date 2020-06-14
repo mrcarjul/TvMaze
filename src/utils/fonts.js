@@ -1,22 +1,23 @@
 import {StyleSheet} from 'react-native';
 
 const size = {
-  title: 26,
-  h2: 20,
+  title: 28,
+  subtitle: 22,
   regular: 17,
 };
 
 const textStyle = StyleSheet.create({
   centeredTitle: {
     fontSize: size.title,
+    fontWeight: 'bold',
     textAlign: 'center',
   },
   centeredSectionTitle: {
-    fontSize: size.h2,
+    fontSize: size.subtitle,
     textAlign: 'center',
   },
   sectionTitle: {
-    fontSize: size.h2,
+    fontSize: size.subtitle,
   },
   normal: {
     fontSize: size.title,
