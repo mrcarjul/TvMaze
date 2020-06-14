@@ -36,7 +36,7 @@ export default function shows(state = initialState, action) {
         ...state,
         shows:
           action.page > state.page
-            ? [...state.shows, action.payload]
+            ? [...state.shows, ...action.payload]
             : action.payload,
         fetching: false,
         error: null,
