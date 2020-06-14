@@ -31,6 +31,7 @@ function ScrollToTopFab({flatListRef}) {
       style={[
         styles.centerContents,
         styles.fabContainer,
+        styles.shadows,
         {backgroundColor: colors.backgroundSecondaryAlt},
       ]}
       onPress={onPressFab}>
