@@ -26,7 +26,12 @@ class Show extends React.PureComponent {
             styles.centerContents,
             {backgroundColor: colors.background},
           ]}>
-          <Text style={[textStyle.description, {color: colors.textAlt}]}>
+          <Text
+            style={[
+              styles.text,
+              textStyle.description,
+              {color: colors.textAlt},
+            ]}>
             {name} - {index}
           </Text>
         </View>
@@ -42,11 +47,13 @@ const styles = StyleSheet.create({
     width: metrics.width / 2,
   },
   showContainer: {
-    paddingVertical: 15,
+    marginVertical: 15,
+  },
+  text: {
+    padding: 10,
   },
   titleContainer: {
-    minHeight: 120,
-    padding: 10,
+    minHeight: 100,
     width: metrics.width / 2,
   },
 });
