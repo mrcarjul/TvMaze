@@ -12,6 +12,9 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  row: {
+    flexDirection: 'row',
+  },
   shadows: {
     elevation: 10,
     shadowOffset: {
