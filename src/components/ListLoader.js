@@ -4,7 +4,7 @@ import React from 'react';
 import {ActivityIndicator, View} from 'react-native';
 
 // Utils
-import {genericStyles} from '../utils';
+import {genericStyles, metrics} from '../utils';
 
 /**
  * @description basic footer loader for FlatList
@@ -12,7 +12,7 @@ import {genericStyles} from '../utils';
  */
 function ListLoader({fetching}) {
   return (
-    <View style={genericStyles.centerContents}>
+    <View style={[{height: metrics.section}, genericStyles.centerContents]}>
       {fetching && <ActivityIndicator size="small" />}
     </View>
   );
