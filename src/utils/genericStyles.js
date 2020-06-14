@@ -12,4 +12,13 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  shadows: {
+    elevation: 10,
+    shadowOffset: {
+      height: 5,
+      width: 0,
+    },
+    shadowOpacity: 0.34,
+    shadowRadius: 6.27,
+  },
 });
