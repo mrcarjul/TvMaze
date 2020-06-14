@@ -51,11 +51,10 @@ export const getShowsByPageAction = page => async dispatch => {
   try {
     dispatch(requestData());
     const response = await getShowsByPage(page);
-    debugger;
     if (response?.data) {
       const showsPayload = response.data;
       const samplePayload = showsPayload?.length ? showsPayload[0] : {};
-      if (validateApiResponse(samplePayload)) {
+      if (validateApiResponse(samplePayload) && !showsPayload?.length === 0) {
         dispatch(
           requestDataFailure(
             'Could not Retrive Shows Info for the moment, please try again later',
@@ -82,11 +81,10 @@ export const getShowsByQueryAction = query => async dispatch => {
   try {
     dispatch(requestData());
     const response = await getShowsByQuery(query);
-    debugger;
     if (response?.data) {
       const showsPayload = response.data;
       const samplePayload = showsPayload?.length ? showsPayload[0] : {};
-      if (validateApiResponse(samplePayload)) {
+      if (validateApiResponse(samplePayload) && !showsPayload?.length === 0) {
         dispatch(requestDataFailure(badResponse));
         return;
       }
