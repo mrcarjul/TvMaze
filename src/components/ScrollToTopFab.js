@@ -20,8 +20,6 @@ function ScrollToTopFab({flatListRef}) {
   const {themeColorType} = useSelector(state => state.themes);
   const colors = getThemeColors(themeColorType);
 
-  AntDesign.loadFont();
-
   const onPressFab = () => {
     flatListRef.current.scrollToIndex({index: 0, animated: true});
   };
