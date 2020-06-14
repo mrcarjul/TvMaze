@@ -11,10 +11,11 @@ import {fonts, genericStyles, metrics} from '../utils';
 
 class Show extends React.PureComponent {
   render() {
-    const {colors, index, name, poster} = this.props;
+    const {colors, name, poster} = this.props;
     const {textStyle} = fonts;
     return (
-      <View style={[styles.showContainer, styles.centerContents]}>
+      <View
+        style={[styles.centerContents, styles.shadows, styles.showContainer]}>
         <FastImage
           resizeMode={FastImage.resizeMode.contain}
           source={{uri: poster?.medium}}
@@ -32,7 +33,7 @@ class Show extends React.PureComponent {
               textStyle.description,
               {color: colors.textAlt},
             ]}>
-            {name} - {index}
+            {name}
           </Text>
         </View>
       </View>
@@ -43,6 +44,8 @@ class Show extends React.PureComponent {
 const styles = StyleSheet.create({
   ...genericStyles,
   imageStyle: {
+    borderTopLeftRadius: metrics.radius,
+    borderTopRightRadius: metrics.radius,
     height: metrics.width / 2 / metrics.imageRatio,
     width: metrics.width / 2,
   },
@@ -53,6 +56,8 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   titleContainer: {
+    borderBottomLeftRadius: metrics.radius,
+    borderBottomRightRadius: metrics.radius,
     minHeight: 100,
     width: metrics.width / 2,
   },
