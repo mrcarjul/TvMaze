@@ -4,7 +4,7 @@ import React, {useEffect, useState, useRef} from 'react';
 import {FlatList, StyleSheet, Text, View} from 'react-native';
 
 // Personalized components
-import {ListLoader, ScrollToTopFab, Show} from '../components';
+import {ListLoader, SearchInput, ScrollToTopFab, Show} from '../components';
 
 // Utils
 import {fonts, getThemeColors, genericStyles, metrics} from '../utils';
@@ -44,6 +44,7 @@ function ShowsScreen() {
   return (
     <View style={[styles.container, {backgroundColor: colors.backgroundAlt}]}>
       <Text style={textStyle.centeredTitle}>Shows</Text>
+      <SearchInput />
       <View style={styles.container}>
         <FlatList
           ref={flatListRef}
