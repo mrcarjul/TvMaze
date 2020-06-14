@@ -9,7 +9,7 @@ import {genericStyles} from '../utils';
 function Show({name, poster}) {
   return (
     <View style={[styles.showContainer, styles.centerContents]}>
-      <Image source={{uri: poster}} style={styles.imageStyle} />
+      <Image source={{uri: poster?.medium}} style={styles.imageStyle} />
       <Text>{name}</Text>
     </View>
   );
