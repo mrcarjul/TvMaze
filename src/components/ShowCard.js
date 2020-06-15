@@ -3,6 +3,9 @@ import React from 'react';
 // Core
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
+// Assets
+import images from '../assets/images';
+
 // External libs
 import FastImage from 'react-native-fast-image';
 import {SharedElement} from 'react-navigation-shared-element';
@@ -34,7 +37,7 @@ class ShowCard extends React.PureComponent {
         <SharedElement id={`show.${id}`}>
           <FastImage
             resizeMode={FastImage.resizeMode.contain}
-            source={{uri: poster}}
+            source={{uri: poster || images.show_image}}
             style={styles.imageStyle}
           />
         </SharedElement>
