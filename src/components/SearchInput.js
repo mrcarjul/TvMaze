@@ -27,7 +27,7 @@ import {
 function SearchInput({flatListRef}) {
   const [query, setQuery] = useState('');
   const prevQuery = usePrevious(query);
-  const {fetching} = useSelector(state => state.shows);
+  const {error, fetching} = useSelector(state => state.shows);
   const {themeColorType} = useSelector(state => state.themes);
   const dispatch = useDispatch();
 
@@ -35,14 +35,18 @@ function SearchInput({flatListRef}) {
   const {textStyle} = fonts;
 
   const requestShows = useCallback(() => {
-    flatListRef.current.scrollToIndex({index: 0, animated: true});
+    if (!error) {
+      flatListRef?.current?.scrollToIndex({index: 0, animated: true});
+    }
     dispatch(getShowsByPageAction(0));
-  }, [dispatch, flatListRef]);
+  }, [dispatch, error, flatListRef]);
 
   const onSearch = useCallback(() => {
-    flatListRef.current.scrollToIndex({index: 0, animated: true});
+    if (!error) {
+      flatListRef?.current?.scrollToIndex({index: 0, animated: true});
+    }
     dispatch(getShowsByQueryAction(query));
-  }, [dispatch, flatListRef, query]);
+  }, [dispatch, error, flatListRef, query]);
 
   const [debouncedSearch] = useDebouncedCallback(onSearch, 200);
   const [debouncedSearchReset] = useDebouncedCallback(requestShows, 200);
