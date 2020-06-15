@@ -7,6 +7,7 @@ import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 // Utils
+import PropTypes from 'prop-types';
 import {getThemeColors, genericStyles, metrics} from '../utils';
 
 // Redux
@@ -30,7 +31,7 @@ function ScrollToTopFab({flatListRef}) {
         styles.centerContents,
         styles.fabContainer,
         styles.shadows,
-        {backgroundColor: colors.backgroundSecondaryAlt},
+        {backgroundColor: colors.primary},
       ]}
       onPress={onPressFab}>
       <AntDesign name="arrowup" color={colors.textAlt} size={metrics.icon} />
@@ -50,5 +51,9 @@ const styles = StyleSheet.create({
     zIndex: 99,
   },
 });
+
+ScrollToTopFab.propTypes = {
+  flatListRef: PropTypes.object,
+};
 
 export default ScrollToTopFab;
