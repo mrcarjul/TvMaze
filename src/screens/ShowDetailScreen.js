@@ -48,7 +48,9 @@ function ShowDetailScreen({navigation}) {
   const {medium} = image || {};
   const uri = useMemo(() => ({uri: medium || images.show_image}), [medium]);
   const {time, days} = schedule || {}; // Could be empty
-  const parsedSummary = parseStringToObject(summary || '');
+  const parsedSummary = parseStringToObject(
+    summary || '<p>No information yet</p>',
+  );
 
   /**
    * @description request episodes info
