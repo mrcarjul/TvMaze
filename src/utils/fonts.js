@@ -3,6 +3,7 @@ import {StyleSheet} from 'react-native';
 const size = {
   title: 28,
   subtitle: 22,
+  normal: 20,
   regular: 17,
 };
 
@@ -20,7 +21,14 @@ const textStyle = StyleSheet.create({
     fontSize: size.subtitle,
   },
   normal: {
-    fontSize: size.title,
+    fontSize: size.normal,
+  },
+  normalBold: {
+    fontSize: size.normal,
+    fontWeight: 'bold',
+  },
+  centeredNormal: {
+    fontSize: size.normal,
     textAlign: 'center',
   },
   description: {
