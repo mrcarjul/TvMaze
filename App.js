@@ -1,3 +1,6 @@
+import 'react-native-gesture-handler';
+import './src/utils/wydr';
+
 import React from 'react';
 
 // Core
