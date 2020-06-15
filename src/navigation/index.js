@@ -8,6 +8,7 @@ import {createSharedElementStackNavigator} from 'react-navigation-shared-element
 // Screens
 import ShowsScreen from '../screens/ShowsScreen';
 import ShowDetailScreen from '../screens/ShowDetailScreen';
+import EpisodeDetailScreen from '../screens/EpisodeDetailScreen';
 
 const Stack = createSharedElementStackNavigator();
 
@@ -27,6 +28,7 @@ function AppNavigator() {
             return [{id: `show.${show_id}`, resize: 'none'}];
           }}
         />
+        <Stack.Screen name="Episode" component={EpisodeDetailScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
