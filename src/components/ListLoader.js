@@ -12,6 +12,9 @@ import {genericStyles, metrics} from '../utils';
  * @param {boolean} fetching if true shows loader
  */
 function ListLoader({fetching}) {
+  if (!fetching) {
+    return null;
+  }
   return (
     <View style={[{height: metrics.section}, genericStyles.centerContents]}>
       {fetching && <ActivityIndicator size="small" />}
