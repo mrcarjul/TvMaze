@@ -46,13 +46,40 @@ export const setEpisodeIdAction = episode_id => ({
  * @param {object} payload containing api response
  */
 const validateApiResponse = payload => {
-  const {id, name, url, genres, premiered, rating, image, summary} =
-    payload || {};
-  if (id && name && url && genres && premiered && rating && image && summary) {
+  const {id, name, genres, image, network, summary, webChannel} = payload || {};
+  if (id && name && genres && image && network && summary && webChannel) {
     return false;
   }
   return true;
 };
+
+/**
+ * @description TvMaze returns too much info from shows that is never used this clear payload from unused data
+ */
+const getShowsOnlyUsableData = payload =>
+  payload.map(show => ({
+    genres: show.genres,
+    id: show.id,
+    image: show.image,
+    name: show.name,
+    network: show.network,
+    schedule: show.schedule,
+    summary: show.summary,
+    webChannel: show.webChannel,
+  }));
+
+/**
+ * @description TvMaze returns too much info from episodes that is never used this clear payload from unused data
+ */
+const getEpisodesOnlyUsableData = payload =>
+  payload.map(show => ({
+    id: show.id,
+    image: show.image,
+    name: show.name,
+    number: show.number,
+    season: show.season,
+    summary: show.summary,
+  }));
 
 /**
  * @description Calls api to retrieve shows questions
@@ -67,7 +94,9 @@ export const getShowsByPageAction = page => async dispatch => {
       if (validateApiResponse(samplePayload) && !showsPayload?.length === 0) {
         dispatch(requestDataFailure(badResponse));
       }
-      dispatch(requestShowsDataSuccess(showsPayload, page));
+      dispatch(
+        requestShowsDataSuccess(getShowsOnlyUsableData(showsPayload), page),
+      );
     } else {
       dispatch(requestDataFailure(badResponse));
     }
@@ -91,7 +120,9 @@ export const getShowsByQueryAction = query => async dispatch => {
         return;
       }
       dispatch(
-        requestShowsDataSuccess(showsPayload.map(showData => showData.show)),
+        requestShowsDataSuccess(
+          getShowsOnlyUsableData(showsPayload.map(showData => showData.show)),
+        ),
       );
     } else {
       dispatch(requestDataFailure(badResponse));
@@ -110,7 +141,11 @@ export const getShowEpisodesByIdAction = id => async dispatch => {
     const response = await getShowEpisodesById(id);
     if (response?.data) {
       const episodesPayload = response.data; // Only get the data to used
-      dispatch(requestShowsEpisodesDataSuccess(episodesPayload));
+      dispatch(
+        requestShowsEpisodesDataSuccess(
+          getEpisodesOnlyUsableData(episodesPayload),
+        ),
+      );
     } else {
       dispatch(requestDataFailure(badResponse));
     }
