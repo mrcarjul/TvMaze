@@ -4,7 +4,11 @@ import React, {useEffect} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 
 // Personalized components
-import {SectionContainer, SectionHeader, Summary, Show} from '../components';
+import {SectionContainer, SectionHeader, Summary} from '../components';
+
+// External libs
+import FastImage from 'react-native-fast-image';
+import {SharedElement} from 'react-navigation-shared-element';
 
 // Utils
 import {
@@ -23,7 +27,7 @@ import {getShowEpisodesByIdAction} from '../redux/actions/shows';
  * @description The purpose of the screen is to show selected show details
  */
 function ShowDetailScreen({navigation}) {
-  const {shows, show_id} = useSelector(state => state.shows);
+  const {episodes, shows, show_id} = useSelector(state => state.shows);
   const {themeColorType} = useSelector(state => state.themes);
   const dispatch = useDispatch();
   const colors = getThemeColors(themeColorType);
@@ -39,15 +43,20 @@ function ShowDetailScreen({navigation}) {
 
   return (
     <View style={[styles.container, {backgroundColor: colors.backgroundAlt}]}>
-      <Text style={textStyle.centeredSectionTitle}>Show Detail</Text>
+      <Text style={[styles.marginContent, textStyle.centeredSectionTitle]}>
+        Serie Detail
+      </Text>
+      <SectionHeader title={name} centered />
       <ScrollView>
-        <Show
-          colors={colors}
-          disabled={true}
-          id={id}
-          name={name}
-          poster={image}
-        />
+        <View style={[styles.centerContents, styles.marginContent]}>
+          <SharedElement id={`show.${show_id}`}>
+            <FastImage
+              resizeMode={FastImage.resizeMode.contain}
+              source={{uri: image?.medium}}
+              style={styles.imageStyle}
+            />
+          </SharedElement>
+        </View>
         <SectionContainer title="Genres" payload={genres} />
         <SectionContainer
           title="Schedule"
@@ -59,6 +68,7 @@ function ShowDetailScreen({navigation}) {
         <View style={styles.summaryContainer}>
           <Summary objectElements={parsedSummary} />
         </View>
+        <SectionContainer title="" payload={null} />
       </ScrollView>
     </View>
   );
@@ -66,9 +76,22 @@ function ShowDetailScreen({navigation}) {
 
 const styles = StyleSheet.create({
   ...genericStyles,
+  marginContent: {
+    marginVertical: metrics.marginVertical,
+  },
+  imageStyle: {
+    borderRadius: metrics.radius,
+    height: metrics.width / 2 / metrics.imageRatio,
+    width: metrics.width / 2,
+  },
   summaryContainer: {
+    marginHorizontal: metrics.marginHorizontal,
     marginVertical: metrics.marginVertical,
   },
 });
+
+ShowDetailScreen.sharedElements = (route, otherRoute, showing) => [
+  {id: `show.${route.params.show_id}`, resize: 'none'},
+];
 
 export default ShowDetailScreen;

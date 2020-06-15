@@ -5,6 +5,7 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 // External libs
 import FastImage from 'react-native-fast-image';
+import {SharedElement} from 'react-navigation-shared-element';
 
 // Utils
 import PropTypes from 'prop-types';
@@ -22,7 +23,7 @@ class ShowCard extends React.PureComponent {
   };
 
   render() {
-    const {colors, disabled, name, poster} = this.props;
+    const {colors, disabled, id, name, poster} = this.props;
     const {textStyle} = fonts;
 
     return (
@@ -30,11 +31,13 @@ class ShowCard extends React.PureComponent {
         onPress={this.onSelectShow}
         style={[styles.centerContents, styles.shadows, styles.showContainer]}
         disabled={disabled}>
-        <FastImage
-          resizeMode={FastImage.resizeMode.contain}
-          source={{uri: poster?.medium}}
-          style={styles.imageStyle}
-        />
+        <SharedElement id={`show.${id}`}>
+          <FastImage
+            resizeMode={FastImage.resizeMode.contain}
+            source={{uri: poster?.medium}}
+            style={styles.imageStyle}
+          />
+        </SharedElement>
         <View
           style={[
             styles.titleContainer,
@@ -65,6 +68,8 @@ const styles = StyleSheet.create({
   },
   showContainer: {
     marginVertical: 15,
+    marginHorizontal: metrics.width / 4,
+    width: metrics.width / 2,
   },
   text: {
     padding: 10,
