@@ -41,7 +41,7 @@ function ShowsScreen({navigation}) {
     return {length: ITEM_HEIGHT, offset: ITEM_HEIGHT * index, index};
   }, []);
 
-  const getKey = ({id}) => id;
+  const getKey = ({id}) => `Show-${id}`;
 
   const renderItem = useCallback(
     ({item}) => (
@@ -80,7 +80,7 @@ function ShowsScreen({navigation}) {
         />
         {error && (
           <View style={[styles.container, styles.centerContents]}>
-            <Text style={textStyle.normal}>{errorMsg}</Text>
+            <Text style={textStyle.centeredNormal}>{errorMsg}</Text>
           </View>
         )}
         <ListLoader fetching={fetching} />
