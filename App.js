@@ -8,6 +8,7 @@ import {TvMazeStatusbar} from './src/components';
 
 // External Libs
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 // Navigation
 import AppNavigator from './src/navigation';
@@ -25,6 +26,7 @@ function App() {
   // Preload icons
   if (Platform.OS === 'ios') {
     AntDesign.loadFont();
+    MaterialIcons.loadFont();
   }
 
   return (
