@@ -23,9 +23,10 @@ const textStyle = StyleSheet.create({
   normal: {
     fontSize: size.normal,
   },
-  normalBold: {
+  centeredNormalBold: {
     fontSize: size.normal,
     fontWeight: 'bold',
+    textAlign: 'center',
   },
   centeredNormal: {
     fontSize: size.normal,
