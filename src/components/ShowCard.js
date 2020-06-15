@@ -34,7 +34,7 @@ class ShowCard extends React.PureComponent {
         <SharedElement id={`show.${id}`}>
           <FastImage
             resizeMode={FastImage.resizeMode.contain}
-            source={{uri: poster?.medium}}
+            source={{uri: poster}}
             style={styles.imageStyle}
           />
         </SharedElement>
@@ -88,7 +88,7 @@ ShowCard.propTypes = {
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   navigation: PropTypes.object,
-  poster: PropTypes.object.isRequired,
+  poster: PropTypes.string.isRequired,
   setShowId: PropTypes.func.isRequired,
 };
 
