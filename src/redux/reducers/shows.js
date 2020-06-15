@@ -3,13 +3,14 @@ import {
   REQUEST_DATA_FAILURE,
   REQUEST_SHOWS_DATA_SUCCESS,
   REQUEST_SHOWS_EPISODES_DATA_SUCCESS,
+  SET_SHOW_ID,
 } from '../actions/shows';
 
 const initialState = {
   error: null,
   errorMsg: null,
   fetching: null,
-  index: null,
+  show_id: null,
   page: 0,
   shows: [],
   episodes: {},
@@ -50,6 +51,11 @@ export default function shows(state = initialState, action) {
         fetching: false,
         error: null,
         errorMsg: null,
+      };
+    case SET_SHOW_ID:
+      return {
+        ...state,
+        show_id: action.show_id,
       };
     default:
       return state;
