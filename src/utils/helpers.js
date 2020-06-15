@@ -8,8 +8,8 @@ function parseStringToObject(textToParse) {
   let parsedObject = {};
   const parser = new DOMParser();
   const docNode = parser.parseFromString(textToParse, 'text/xml');
-  textToParse = docNode.firstChild;
-  treeHTML(textToParse, parsedObject);
+  let parsedText = docNode.firstChild;
+  treeHTML(parsedText, parsedObject);
   return parsedObject;
 }
 
