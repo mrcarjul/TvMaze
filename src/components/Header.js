@@ -1,19 +1,7 @@
 import React from 'react';
 
 // Core
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  TouchableNativeFeedback,
-  View,
-} from 'react-native';
-
-// External Libs
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-
-// Navigation
-import {useNavigation} from '@react-navigation/native';
+import {Platform, StyleSheet, Text, View} from 'react-native';
 
 // Utils
 import PropTypes from 'prop-types';
@@ -29,23 +17,12 @@ import {useSelector} from 'react-redux';
  */
 function Header({canBack, title}) {
   const {themeColorType} = useSelector(state => state.themes);
-  const {goBack} = useNavigation();
   const colors = getThemeColors(themeColorType);
   const {textStyle} = fonts;
 
   return (
-    <View style={[styles.headerContainer, styles.row, styles.centerContents]}>
-      {canBack && (
-        <TouchableNativeFeedback onPress={goBack}>
-          <View style={[styles.centerContents, styles.backButton]}>
-            <MaterialIcons
-              color={colors.text}
-              name="arrow-back"
-              size={metrics.icon}
-            />
-          </View>
-        </TouchableNativeFeedback>
-      )}
+    <View style={[styles.headerContainer, styles.row]}>
+      <View style={styles.container} />
       <View
         style={
           Platform.OS === 'ios'
@@ -56,23 +33,23 @@ function Header({canBack, title}) {
           {title}
         </Text>
       </View>
+      <View style={styles.container} />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   ...genericStyles,
-  backButton: {
-    flex: 1,
-  },
   centerVertical: {
-    justifyContent: 'center',
+    alignItems: 'center',
   },
   headerContainer: {
+    marginVertical: 5,
     height: metrics.section,
+    width: metrics.width,
   },
   headerTitleContainer: {
-    flex: 9,
+    flex: 8,
   },
 });
 
