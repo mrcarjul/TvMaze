@@ -12,11 +12,19 @@ import {
 // External libs
 import {getStatusBarHeight} from 'react-native-status-bar-height';
 
+// Utils
+import {getThemeColors} from '../utils';
+
+// Redux
+import {useSelector} from 'react-redux';
+
 /**
  * @description Component in charge of status bar managment doing the right calculations
  */
 function TvMazeStatusbar() {
   const [statusbarHeight, setStatusbarHeight] = useState(getStatusBarHeight());
+  const {themeColorType} = useSelector(state => state.themes);
+  const colors = getThemeColors(themeColorType);
 
   /**
    * @description effect needed for ios to detect changes in status bar due to shared hotspot or others
@@ -37,7 +45,11 @@ function TvMazeStatusbar() {
 
   return (
     <View style={{height: statusbarHeight}}>
-      <StatusBar barStyle="dark-content" />
+      <StatusBar
+        barStyle={themeColorType === 'light' ? 'dark-content' : 'light-content'}
+        backgroundColor={colors.backgroundAlt}
+        translucent
+      />
     </View>
   );
 }
