@@ -4,7 +4,7 @@ import React, {useEffect, useState} from 'react';
 import {
   NativeModules,
   Platform,
-  StatusBarIOS,
+  NativeEventEmitter,
   StatusBar,
   View,
 } from 'react-native';
@@ -25,8 +25,8 @@ function TvMazeStatusbar() {
     const {StatusBarManager} = NativeModules;
     if (Platform.OS === 'ios') {
       StatusBarManager.getHeight(({height}) => setStatusbarHeight(height));
-
-      const listener = StatusBarIOS.addListener(
+      const statusbarEmiter = new NativeEventEmitter(StatusBarManager);
+      const listener = statusbarEmiter.addListener(
         'statusBarFrameWillChange',
         statusBarData =>
           this.setState({statusBarHeight: statusBarData.frame.height}),
