@@ -7,7 +7,13 @@ import {ScrollView, StyleSheet, View} from 'react-native';
 import images from '../assets/images';
 
 // Personalized components
-import {Header, SectionContainer, SectionHeader, Summary} from '../components';
+import {
+  Header,
+  ListLoader,
+  SectionContainer,
+  SectionHeader,
+  Summary,
+} from '../components';
 
 // External libs
 import FastImage from 'react-native-fast-image';
@@ -30,7 +36,9 @@ import {getShowEpisodesByIdAction} from '../redux/actions/shows';
  * @description The purpose of the screen is to show selected show details
  */
 function ShowDetailScreen({navigation}) {
-  const {episodes, shows, show_id} = useSelector(state => state.shows);
+  const {fetching, episodes, shows, show_id} = useSelector(
+    state => state.shows,
+  );
   const {themeColorType} = useSelector(state => state.themes);
   const dispatch = useDispatch();
   const colors = getThemeColors(themeColorType);
@@ -80,12 +88,16 @@ function ShowDetailScreen({navigation}) {
         <View style={styles.summaryContainer}>
           <Summary objectElements={parsedSummary} />
         </View>
-        <SectionContainer
-          title="Episodes"
-          payload={episodes}
-          episodes
-          navigation={navigation}
-        />
+        {fetching ? (
+          <ListLoader fetching={fetching} />
+        ) : (
+          <SectionContainer
+            title="Episodes"
+            payload={episodes}
+            episodes
+            navigation={navigation}
+          />
+        )}
       </ScrollView>
     </View>
   );
