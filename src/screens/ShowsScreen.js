@@ -40,22 +40,22 @@ function ShowsScreen({navigation}) {
   }, [dispatch]);
 
   const requestMoreShows = useCallback(() => {
-    dispatch(getShowsByPageAction(page));
+    dispatch(getShowsByPageAction(page + 1));
   }, [dispatch, page]);
 
   const getItemLayout = useCallback((data, index) => {
     return {length: ITEM_HEIGHT, offset: ITEM_HEIGHT * index, index};
   }, []);
 
-  const getKey = ({id}) => `Show-${id}`;
+  const getKey = useCallback(({id}) => `Show-${id}`, []);
 
   const renderItem = useCallback(
     ({item}) => (
       <ShowCard
-        id={item.id}
+        id={item?.id}
         colors={colors}
-        name={item.name}
-        poster={item.image}
+        name={item?.name}
+        poster={item?.image?.medium}
         navigation={navigation}
       />
     ),
@@ -70,7 +70,7 @@ function ShowsScreen({navigation}) {
   return (
     <View style={[styles.container, {backgroundColor: colors.backgroundAlt}]}>
       <Header title="Series" />
-      <SearchInput />
+      <SearchInput flatListRef={flatListRef} />
       <View style={styles.container}>
         <FlatList
           data={shows}
@@ -79,7 +79,11 @@ function ShowsScreen({navigation}) {
           initialNumToRender={10}
           keyExtractor={getKey}
           maxToRenderPerBatch={10}
-          onEndReached={requestMoreShows}
+          onEndReached={
+            shows.length !== 0 && shows.length % 240 === 0
+              ? requestMoreShows
+              : null
+          }
           renderItem={renderItem}
           ref={flatListRef}
           windowSize={5}
