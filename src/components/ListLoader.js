@@ -4,11 +4,12 @@ import React from 'react';
 import {ActivityIndicator, View} from 'react-native';
 
 // Utils
+import PropTypes from 'prop-types';
 import {genericStyles, metrics} from '../utils';
 
 /**
  * @description basic footer loader for FlatList
- * @param {boolean} fetching
+ * @param {boolean} fetching if true shows loader
  */
 function ListLoader({fetching}) {
   return (
@@ -17,5 +18,9 @@ function ListLoader({fetching}) {
     </View>
   );
 }
+
+ListLoader.propTypes = {
+  fetching: PropTypes.bool,
+};
 
 export default ListLoader;

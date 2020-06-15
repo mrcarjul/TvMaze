@@ -44,6 +44,7 @@ function Summary({objectElements, idx}) {
 
 Summary.propTypes = {
   objectElements: PropTypes.object.isRequired,
+  idx: PropTypes.string,
 };
 
 export default Summary;

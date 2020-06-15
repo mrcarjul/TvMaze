@@ -16,6 +16,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {useNavigation} from '@react-navigation/native';
 
 // Utils
+import PropTypes from 'prop-types';
 import {fonts, genericStyles, getThemeColors, metrics} from '../utils';
 
 // Redux
@@ -26,7 +27,7 @@ import {useSelector} from 'react-redux';
  * @param {boolean} canBack if true show back button
  * @param {string} title
  */
-function Header({canBack, navigation, title}) {
+function Header({canBack, title}) {
   const {themeColorType} = useSelector(state => state.themes);
   const {goBack} = useNavigation();
   const colors = getThemeColors(themeColorType);
@@ -74,5 +75,10 @@ const styles = StyleSheet.create({
     flex: 9,
   },
 });
+
+Header.propTypes = {
+  canBack: PropTypes.bool,
+  title: PropTypes.string.isRequired,
+};
 
 export default Header;
