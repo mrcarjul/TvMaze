@@ -72,13 +72,13 @@ const getShowsOnlyUsableData = payload =>
  * @description TvMaze returns too much info from episodes that is never used this clear payload from unused data
  */
 const getEpisodesOnlyUsableData = payload =>
-  payload.map(show => ({
-    id: show.id,
-    image: show.image,
-    name: show.name,
-    number: show.number,
-    season: show.season,
-    summary: show.summary,
+  payload.map(episode => ({
+    id: episode.id,
+    image: episode.image,
+    name: episode.name,
+    number: episode.number,
+    season: episode.season,
+    summary: episode.summary,
   }));
 
 /**
