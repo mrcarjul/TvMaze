@@ -13,7 +13,6 @@ import {SharedElement} from 'react-navigation-shared-element';
 // Utils
 import PropTypes from 'prop-types';
 import {
-  fonts,
   getThemeColors,
   genericStyles,
   parseStringToObject,
@@ -33,7 +32,8 @@ function ShowDetailScreen({navigation}) {
   const dispatch = useDispatch();
   const colors = getThemeColors(themeColorType);
   const selected_show = shows.find(show => show.id === show_id);
-  const {genres, name, image, network, schedule, summary} = selected_show || {};
+  const {genres, name, image, network, schedule, summary, webChannel} =
+    selected_show || {};
   const {time, days} = schedule || {}; // Could be empty
   const parsedSummary = parseStringToObject(summary || '');
 
@@ -56,13 +56,18 @@ function ShowDetailScreen({navigation}) {
           </SharedElement>
         </View>
         <SectionContainer title="Genres" payload={genres} />
-        <SectionContainer title="Network" payload={network.name} />
         <SectionContainer
-          title="Schedule"
-          payload={days}
-          commas={true}
-          time={time}
+          title={network?.name ? 'Network' : 'Web channel'}
+          payload={network?.name || webChannel?.name}
         />
+        {days?.length !== 0 && (
+          <SectionContainer
+            title="Schedule"
+            payload={days}
+            commas={true}
+            time={time}
+          />
+        )}
         <SectionHeader title="Summary" />
         <View style={styles.summaryContainer}>
           <Summary objectElements={parsedSummary} />
