@@ -1,7 +1,19 @@
 import ListLoader from './ListLoader';
-import SearchInput from './SearchInput';
 import ScrollToTopFab from './ScrollToTopFab';
+import SearchInput from './SearchInput';
+import SectionContainer from './SectionContainer';
+import SectionHeader from './SectionHeader';
 import Show from './Show';
+import Summary from './Summary';
 import TvMazeStatusbar from './TvMazeStatusbar';
 
-export {ListLoader, SearchInput, ScrollToTopFab, Show, TvMazeStatusbar};
+export {
+  ListLoader,
+  ScrollToTopFab,
+  SearchInput,
+  SectionContainer,
+  SectionHeader,
+  Show,
+  Summary,
+  TvMazeStatusbar,
+};
