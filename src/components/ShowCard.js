@@ -14,11 +14,11 @@ import {fonts, genericStyles, metrics} from '../utils';
 import {setShowIdAction} from '../redux/actions/shows';
 import {connect} from 'react-redux';
 
-class Show extends React.PureComponent {
+class ShowCard extends React.PureComponent {
   onSelectShow = () => {
     const {id, navigation, setShowId} = this.props;
     setShowId(id);
-    navigation.navigate('ShowDetail');
+    navigation.navigate('ShowDetail', {show_id: id});
   };
 
   render() {
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   },
 });
 
-Show.propTypes = {
+ShowCard.propTypes = {
   colors: PropTypes.object.isRequired,
   disabled: PropTypes.bool,
   id: PropTypes.number.isRequired,
@@ -94,4 +94,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   null,
   mapDispatchToProps,
-)(Show);
+)(ShowCard);

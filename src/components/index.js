@@ -3,7 +3,7 @@ import ScrollToTopFab from './ScrollToTopFab';
 import SearchInput from './SearchInput';
 import SectionContainer from './SectionContainer';
 import SectionHeader from './SectionHeader';
-import Show from './Show';
+import ShowCard from './ShowCard';
 import Summary from './Summary';
 import TvMazeStatusbar from './TvMazeStatusbar';
 
@@ -13,7 +13,7 @@ export {
   SearchInput,
   SectionContainer,
   SectionHeader,
-  Show,
+  ShowCard,
   Summary,
   TvMazeStatusbar,
 };
