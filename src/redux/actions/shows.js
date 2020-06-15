@@ -71,7 +71,7 @@ export const getShowsByPageAction = page => async dispatch => {
           ),
         );
       }
-      dispatch(requestShowsDataSuccess(showsPayload, page + 1));
+      dispatch(requestShowsDataSuccess(showsPayload, page));
     } else {
       dispatch(requestDataFailure('Error: There was an Error in API response'));
     }
