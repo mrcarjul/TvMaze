@@ -1,6 +1,7 @@
 {
   "name": "reactNativeTVMAZE",
-  "version": "0.0.1",
+  "author": "Carlos Julio Martínez Ortega",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
