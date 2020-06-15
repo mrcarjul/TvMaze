@@ -65,22 +65,14 @@ export const getShowsByPageAction = page => async dispatch => {
       const showsPayload = response.data;
       const samplePayload = showsPayload?.length ? showsPayload[0] : {};
       if (validateApiResponse(samplePayload) && !showsPayload?.length === 0) {
-        dispatch(
-          requestDataFailure(
-            'Could not Retrive Shows Info for the moment, please try again later',
-          ),
-        );
+        dispatch(requestDataFailure(badResponse));
       }
       dispatch(requestShowsDataSuccess(showsPayload, page));
     } else {
-      dispatch(requestDataFailure('Error: There was an Error in API response'));
+      dispatch(requestDataFailure(badResponse));
     }
   } catch (error) {
-    dispatch(
-      requestDataFailure(
-        'Error: Could not retrive shows info for the moment, please try again later.',
-      ),
-    );
+    dispatch(requestDataFailure(networkError));
   }
 };
 
