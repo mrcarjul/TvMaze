@@ -1,3 +1,4 @@
+import Header from './Header';
 import ListLoader from './ListLoader';
 import ScrollToTopFab from './ScrollToTopFab';
 import SearchInput from './SearchInput';
@@ -8,6 +9,7 @@ import Summary from './Summary';
 import TvMazeStatusbar from './TvMazeStatusbar';
 
 export {
+  Header,
   ListLoader,
   ScrollToTopFab,
   SearchInput,
