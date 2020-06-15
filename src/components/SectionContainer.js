@@ -35,9 +35,11 @@ function SectionContainer({title, payload, commas, time}) {
               <Text style={textStyle.normal}>{item}</Text>
             </View>
           ))
-        ) : (
-          <Text style={textStyle.normal}>Unknown</Text>
-        )}
+        ) : payload?.length === 0 ? (
+          <View style={styles.sectionItem}>
+            <Text style={textStyle.normal}>Unknown</Text>
+          </View>
+        ) : null}
       </View>
     </>
   );
@@ -56,7 +58,7 @@ const styles = StyleSheet.create({
 
 SectionContainer.propTypes = {
   commas: PropTypes.bool,
-  payload: PropTypes.array.isRequired,
+  payload: PropTypes.array,
   time: PropTypes.string,
   title: PropTypes.string.isRequired,
 };
