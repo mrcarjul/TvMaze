@@ -7,21 +7,26 @@ import {ActivityIndicator, StyleSheet, TextInput, View} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 // Hooks
-import {useDebouncedCallback} from '../hooks';
+import {usePrevious, useDebouncedCallback} from '../hooks';
 
 // Utils
+import PropTypes from 'prop-types';
 import {fonts, getThemeColors, genericStyles, metrics} from '../utils';
 
 // Redux
 import {useDispatch, useSelector} from 'react-redux';
-import {getShowsByQueryAction} from '../redux/actions/shows';
+import {
+  getShowsByPageAction,
+  getShowsByQueryAction,
+} from '../redux/actions/shows';
 
 /**
- * @description Fab button to scroll to top
+ * @description Search input in charge of request data based in query or reset flatlist
  * @param {React.Ref} flatListRef
  */
-function SearchInput() {
+function SearchInput({flatListRef}) {
   const [query, setQuery] = useState('');
+  const prevQuery = usePrevious(query);
   const {fetching} = useSelector(state => state.shows);
   const {themeColorType} = useSelector(state => state.themes);
   const dispatch = useDispatch();
@@ -29,18 +34,28 @@ function SearchInput() {
   const colors = getThemeColors(themeColorType);
   const {textStyle} = fonts;
 
+  const requestShows = useCallback(() => {
+    flatListRef.current.scrollToIndex({index: 0, animated: true});
+    dispatch(getShowsByPageAction(0));
+  }, [dispatch, flatListRef]);
+
   const onSearch = useCallback(() => {
+    flatListRef.current.scrollToIndex({index: 0, animated: true});
     dispatch(getShowsByQueryAction(query));
-  }, [dispatch, query]);
+  }, [dispatch, flatListRef, query]);
 
   const [debouncedSearch] = useDebouncedCallback(onSearch, 200);
+  const [debouncedSearchReset] = useDebouncedCallback(requestShows, 200);
 
   useEffect(() => {
     if (query.length > 3 && query.length % 2 === 0) {
       debouncedSearch();
     }
+    if (query?.length === 0 && prevQuery?.length > query?.length) {
+      debouncedSearchReset();
+    }
     return;
-  }, [debouncedSearch, onSearch, query]);
+  }, [debouncedSearch, debouncedSearchReset, onSearch, prevQuery, query]);
 
   return (
     <View
@@ -91,5 +106,9 @@ const styles = StyleSheet.create({
     height: metrics.section,
   },
 });
+
+SearchInput.propTypes = {
+  flatListRef: PropTypes.object,
+};
 
 export default SearchInput;
