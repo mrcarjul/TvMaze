@@ -4,7 +4,13 @@ import React, {useCallback, useEffect, useRef} from 'react';
 import {FlatList, StyleSheet, Text, View} from 'react-native';
 
 // Personalized components
-import {ListLoader, SearchInput, ScrollToTopFab, ShowCard} from '../components';
+import {
+  Header,
+  ListLoader,
+  SearchInput,
+  ScrollToTopFab,
+  ShowCard,
+} from '../components';
 
 // Utils
 import PropTypes from 'prop-types';
@@ -63,7 +69,7 @@ function ShowsScreen({navigation}) {
 
   return (
     <View style={[styles.container, {backgroundColor: colors.backgroundAlt}]}>
-      <Text style={textStyle.centeredTitle}>Series</Text>
+      <Header title="Series" />
       <SearchInput />
       <View style={styles.container}>
         <FlatList
