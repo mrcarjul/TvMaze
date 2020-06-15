@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useMemo} from 'react';
 
 // Core
 import {ScrollView, StyleSheet, View} from 'react-native';
@@ -34,6 +34,8 @@ function ShowDetailScreen({navigation}) {
   const selected_show = shows.find(show => show.id === show_id);
   const {genres, name, image, network, schedule, summary, webChannel} =
     selected_show || {};
+  const {medium} = image || {};
+  const uri = useMemo(() => ({uri: medium}), [medium]);
   const {time, days} = schedule || {}; // Could be empty
   const parsedSummary = parseStringToObject(summary || '');
 
@@ -50,7 +52,7 @@ function ShowDetailScreen({navigation}) {
           <SharedElement id={`show.${show_id}`}>
             <FastImage
               resizeMode={FastImage.resizeMode.contain}
-              source={{uri: image?.medium}}
+              source={uri}
               style={styles.imageStyle}
             />
           </SharedElement>
