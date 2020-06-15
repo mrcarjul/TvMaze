@@ -12,15 +12,18 @@ import {useSelector} from 'react-redux';
 
 /**
  * @description basic section header container
+ * @param {boolean} centered
  * @param {string} title
  */
-function SectionHeader({title}) {
+function SectionHeader({centered, title}) {
   const {themeColorType} = useSelector(state => state.themes);
   const colors = getThemeColors(themeColorType);
   const {textStyle} = fonts;
+  const {centeredTitle, sectionTitle} = textStyle;
+  const headerTextStyle = centered ? centeredTitle : sectionTitle;
   return (
     <View style={[styles.headerContainer, {backgroundColor: colors.primary}]}>
-      <Text style={[textStyle.sectionTitle, {color: colors.textSecondaryAlt}]}>
+      <Text style={[headerTextStyle, {color: colors.textSecondaryAlt}]}>
         {title}
       </Text>
     </View>
@@ -37,6 +40,7 @@ const styles = StyleSheet.create({
 });
 
 SectionHeader.propTypes = {
+  centered: PropTypes.bool,
   title: PropTypes.string.isRequired,
 };
 
