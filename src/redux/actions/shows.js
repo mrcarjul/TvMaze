@@ -31,7 +31,7 @@ export const requestShowsEpisodesDataSuccess = payload => ({
   type: REQUEST_SHOWS_EPISODES_DATA_SUCCESS,
   payload,
 });
-export const setShowId = show_id => ({
+export const setShowIdAction = show_id => ({
   type: SET_SHOW_ID,
   show_id,
 });
@@ -111,7 +111,6 @@ export const getShowEpisodesByIdAction = id => async dispatch => {
   try {
     dispatch(requestData());
     const response = await getShowEpisodesById(id);
-    debugger;
     if (response?.data) {
       const episodesPayload = response.data; // Only get the data to used
       dispatch(requestShowsEpisodesDataSuccess(episodesPayload));
