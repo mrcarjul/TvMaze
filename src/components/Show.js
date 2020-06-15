@@ -1,20 +1,32 @@
 import React from 'react';
 
 // Core
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 // External libs
 import FastImage from 'react-native-fast-image';
 
 // Utils
+import PropTypes from 'prop-types';
 import {fonts, genericStyles, metrics} from '../utils';
 
+// Redux
+import {setShowId} from '../redux/actions/shows';
+
 class Show extends React.PureComponent {
+  onPressShow = () => {
+    const {id, navigation} = this.props;
+    setShowId(id);
+    navigation.navigate('ShowDetail');
+  };
+
   render() {
     const {colors, name, poster} = this.props;
     const {textStyle} = fonts;
+
     return (
-      <View
+      <TouchableOpacity
+        onPress={this.onPressShow}
         style={[styles.centerContents, styles.shadows, styles.showContainer]}>
         <FastImage
           resizeMode={FastImage.resizeMode.contain}
@@ -36,7 +48,7 @@ class Show extends React.PureComponent {
             {name}
           </Text>
         </View>
-      </View>
+      </TouchableOpacity>
     );
   }
 }
@@ -62,5 +74,13 @@ const styles = StyleSheet.create({
     width: metrics.width / 2,
   },
 });
+
+Show.propTypes = {
+  colors: PropTypes.object,
+  id: PropTypes.number,
+  name: PropTypes.string,
+  navigation: PropTypes.object,
+  poster: PropTypes.string,
+};
 
 export default Show;
