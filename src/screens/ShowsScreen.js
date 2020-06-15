@@ -7,6 +7,7 @@ import {FlatList, StyleSheet, Text, View} from 'react-native';
 import {ListLoader, SearchInput, ScrollToTopFab, Show} from '../components';
 
 // Utils
+import PropTypes from 'prop-types';
 import {fonts, getThemeColors, genericStyles, metrics} from '../utils';
 
 // Redux
@@ -99,5 +100,9 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
   },
 });
+
+ShowsScreen.propTypes = {
+  navigation: PropTypes.object,
+};
 
 export default ShowsScreen;
