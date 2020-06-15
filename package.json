@@ -23,6 +23,7 @@
     "react-native-safe-area-context": "3.0.3",
     "react-native-screens": "2.8.0",
     "react-native-shared-element": "0.7.0",
+    "react-native-splash-screen": "3.2.0",
     "react-native-status-bar-height": "2.5.0",
     "react-native-vector-icons": "6.6.0",
     "react-navigation-shared-element": "5.0.0-alpha1",
@@ -33,6 +34,7 @@
   "devDependencies": {
     "@babel/core": "7.6.2",
     "@babel/runtime": "7.6.2",
+    "@bam.tech/react-native-make": "3.0.0",
     "@react-native-community/eslint-config": "0.0.5",
     "@welldone-software/why-did-you-render": "4.2.5",
     "babel-jest": "24.9.0",
