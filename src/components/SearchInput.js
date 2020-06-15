@@ -66,7 +66,7 @@ function SearchInput({flatListRef}) {
       style={[
         styles.inputContainer,
         styles.row,
-        {borderColor: colors.backgroundSecondaryAlt},
+        {borderColor: colors.primary},
       ]}>
       <TextInput
         style={[textStyle.description, styles.input, {color: colors.text}]}
