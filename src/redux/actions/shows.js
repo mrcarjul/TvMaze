@@ -15,6 +15,7 @@ export const REQUEST_DATA_FAILURE = 'REQUEST_DATA_FAILURE';
 export const REQUEST_SHOWS_DATA_SUCCESS = 'REQUEST_SHOWS_DATA_SUCCESS';
 export const REQUEST_SHOWS_EPISODES_DATA_SUCCESS =
   'REQUEST_SHOWS_EPISODES_DATA_SUCCESS';
+export const SET_EPISODE_ID = 'SET_EPISODE_ID';
 export const SET_SHOW_ID = 'SET_SHOW_ID';
 
 export const requestData = () => ({type: REQUEST_DATA});
@@ -34,6 +35,10 @@ export const requestShowsEpisodesDataSuccess = payload => ({
 export const setShowIdAction = show_id => ({
   type: SET_SHOW_ID,
   show_id,
+});
+export const setEpisodeIdAction = episode_id => ({
+  type: SET_EPISODE_ID,
+  episode_id,
 });
 
 /**

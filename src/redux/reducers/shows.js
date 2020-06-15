@@ -3,6 +3,7 @@ import {
   REQUEST_DATA_FAILURE,
   REQUEST_SHOWS_DATA_SUCCESS,
   REQUEST_SHOWS_EPISODES_DATA_SUCCESS,
+  SET_EPISODE_ID,
   SET_SHOW_ID,
 } from '../actions/shows';
 
@@ -10,10 +11,11 @@ const initialState = {
   error: null,
   errorMsg: null,
   fetching: null,
+  episode_id: null,
   show_id: null,
   page: 0,
   shows: [],
-  episodes: {},
+  episodes: [],
 };
 
 export default function shows(state = initialState, action) {
@@ -51,6 +53,11 @@ export default function shows(state = initialState, action) {
         fetching: false,
         error: null,
         errorMsg: null,
+      };
+    case SET_EPISODE_ID:
+      return {
+        ...state,
+        episode_id: action.episode_id,
       };
     case SET_SHOW_ID:
       return {
