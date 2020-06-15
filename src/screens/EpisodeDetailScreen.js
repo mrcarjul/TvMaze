@@ -9,9 +9,11 @@ import {Header, SectionContainer, SectionHeader, Summary} from '../components';
 // External libs
 import FastImage from 'react-native-fast-image';
 
+// Images
+import images from '../assets/images';
+
 // Utils
 import {
-  fonts,
   getThemeColors,
   genericStyles,
   parseStringToObject,
@@ -28,10 +30,11 @@ function EpisodeDetailScreen({navigation}) {
   const {episodes, episode_id} = useSelector(state => state.shows);
   const {themeColorType} = useSelector(state => state.themes);
   const colors = getThemeColors(themeColorType);
-  const {textStyle} = fonts;
   const selected_episode = episodes.find(show => show.id === episode_id);
   const {season, name, number, image, summary} = selected_episode || {};
-  const parsedSummary = parseStringToObject(summary || '');
+  const parsedSummary = parseStringToObject(
+    summary || '<p>No information yet</p>',
+  );
 
   return (
     <View style={[styles.container, {backgroundColor: colors.backgroundAlt}]}>
@@ -41,7 +44,7 @@ function EpisodeDetailScreen({navigation}) {
         <View style={[styles.centerContents, styles.marginContent]}>
           <FastImage
             resizeMode={FastImage.resizeMode.contain}
-            source={{uri: image?.medium}}
+            source={image?.medium ? {uri: image?.medium} : images.noimage}
             style={styles.imageStyle}
           />
         </View>
