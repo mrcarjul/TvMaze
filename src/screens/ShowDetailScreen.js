@@ -81,7 +81,6 @@ function ShowDetailScreen({navigation}) {
           <Summary objectElements={parsedSummary} />
         </View>
         <SectionContainer
-          colors={colors}
           title="Episodes"
           payload={episodes}
           episodes

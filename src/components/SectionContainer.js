@@ -8,16 +8,15 @@ import SectionHeader from './SectionHeader';
 
 // Utils
 import PropTypes from 'prop-types';
-import {genericStyles, fonts, metrics} from '../utils';
+import {genericStyles, getThemeColors, fonts, metrics} from '../utils';
 
 // Redux
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {setEpisodeIdAction} from '../redux/actions/shows';
 
 /**
  * @description displays a header with given title and information in container
  * @param {boolean} commas if true separates payload by commas
- * @param {object} colors
  * @param {boolean} episodes if true renders a table from payload
  * @param {object} navigation
  * @param {array} payload items to render in container
@@ -26,16 +25,17 @@ import {setEpisodeIdAction} from '../redux/actions/shows';
  */
 function SectionContainer({
   commas,
-  colors,
   episodes,
   navigation,
   time,
   title,
   payload,
 }) {
+  const {themeColorType} = useSelector(state => state.themes);
   const dispatch = useDispatch();
+  const colors = getThemeColors(themeColorType);
   const {textStyle} = fonts;
-
+  const textContentStyle = [textStyle.normal, {color: colors.text}];
   /**
    * @description Sets episode id and navigates to episode detail screen
    */
@@ -53,18 +53,19 @@ function SectionContainer({
    */
   const getElement = () => {
     let currSeasonIdx = null;
+
     switch (typeof payload) {
       case 'string':
         return (
           <View style={styles.sectionItem}>
-            <Text style={textStyle.normal}>{payload}</Text>
+            <Text style={textContentStyle}>{payload}</Text>
           </View>
         );
       case 'object':
         if (commas) {
           return (
             <View style={styles.sectionItem}>
-              <Text style={textStyle.normal}>
+              <Text style={textContentStyle}>
                 {payload.join(', ')} at {time}
               </Text>
             </View>
@@ -113,7 +114,7 @@ function SectionContainer({
         }
         return payload.map(item => (
           <View key={`${title}-${item}`} style={styles.sectionItem}>
-            <Text style={textStyle.normal}>{item}</Text>
+            <Text style={textContentStyle}>{item}</Text>
           </View>
         ));
       default:
@@ -153,7 +154,6 @@ const styles = StyleSheet.create({
 });
 
 SectionContainer.propTypes = {
-  colors: PropTypes.object,
   commas: PropTypes.bool,
   episodes: PropTypes.bool,
   navigation: PropTypes.object,

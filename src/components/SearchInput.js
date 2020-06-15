@@ -69,7 +69,7 @@ function SearchInput({flatListRef}) {
         {borderColor: colors.backgroundSecondaryAlt},
       ]}>
       <TextInput
-        style={[textStyle.description, styles.input]}
+        style={[textStyle.description, styles.input, {color: colors.text}]}
         value={query}
         placeholder="Search a show..."
         onChangeText={setQuery}
