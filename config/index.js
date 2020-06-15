@@ -1,6 +1,6 @@
 const RN_ENV = {
-  DEBUG: __DEV__ && true,
-  LOGGER: __DEV__ && true,
+  DEBUG: __DEV__ && false,
+  LOGGER: __DEV__ && false,
 };
 
 export default RN_ENV;
