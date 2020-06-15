@@ -17,8 +17,7 @@ function Summary({objectElements, idx}) {
   const {textStyle} = fonts;
   if (tagName === 'p') {
     return (
-      <Text style={textStyle.normal}>
-        {innerText}
+      <Text style={textStyle.centeredNormal}>
         {children?.length > 0
           ? children.map((child, index) => (
               <Summary
@@ -32,10 +31,11 @@ function Summary({objectElements, idx}) {
               />
             ))
           : null}
+        {innerText}
       </Text>
     );
   } else if (tagName === 'b') {
-    return <Text style={textStyle.normalBold}>{innerText}</Text>;
+    return <Text style={textStyle.centeredNormalBold}>{innerText}</Text>;
   } else {
     // no other tagName supported yet so dont render to avoid error
     return null;
