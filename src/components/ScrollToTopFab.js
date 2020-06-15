@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Core
-import {StyleSheet, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, TouchableOpacity} from 'react-native';
 
 // External Libs
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -18,12 +18,19 @@ import {useSelector} from 'react-redux';
  * @param {React.Ref} flatListRef
  */
 function ScrollToTopFab({flatListRef}) {
+  const {error, shows} = useSelector(state => state.shows);
   const {themeColorType} = useSelector(state => state.themes);
   const colors = getThemeColors(themeColorType);
 
   const onPressFab = () => {
-    flatListRef.current.scrollToIndex({index: 0, animated: true});
+    if (!error) {
+      flatListRef?.current?.scrollToIndex({index: 0, animated: true});
+    }
   };
+
+  if (shows.length === 0) {
+    return null;
+  }
 
   return (
     <TouchableOpacity
