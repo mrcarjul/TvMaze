@@ -4,7 +4,7 @@ import React, {useCallback, useEffect, useRef} from 'react';
 import {FlatList, StyleSheet, Text, View} from 'react-native';
 
 // Personalized components
-import {ListLoader, SearchInput, ScrollToTopFab, Show} from '../components';
+import {ListLoader, SearchInput, ScrollToTopFab, ShowCard} from '../components';
 
 // Utils
 import PropTypes from 'prop-types';
@@ -45,7 +45,7 @@ function ShowsScreen({navigation}) {
 
   const renderItem = useCallback(
     ({item}) => (
-      <Show
+      <ShowCard
         id={item.id}
         colors={colors}
         name={item.name}
