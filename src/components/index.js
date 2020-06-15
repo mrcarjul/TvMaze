@@ -1,3 +1,4 @@
+import Footer from './Footer';
 import Header from './Header';
 import ListLoader from './ListLoader';
 import ScrollToTopFab from './ScrollToTopFab';
@@ -9,6 +10,7 @@ import Summary from './Summary';
 import TvMazeStatusbar from './TvMazeStatusbar';
 
 export {
+  Footer,
   Header,
   ListLoader,
   ScrollToTopFab,
