@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   input: {
-    marginHorizontal: 10,
+    marginHorizontal: metrics.marginHorizontal,
     flex: 9,
     textAlign: 'left',
   },
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderWidth: 1,
     borderRadius: metrics.radius,
-    margin: 10,
+    margin: metrics.margin,
     height: metrics.section,
   },
 });
