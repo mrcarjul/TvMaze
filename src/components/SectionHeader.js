@@ -12,7 +12,7 @@ import {useSelector} from 'react-redux';
 
 /**
  * @description basic section header container
- * @param {boolean} centered
+ * @param {boolean} centered if true centers text in header
  * @param {string} title
  */
 function SectionHeader({centered, title}) {
