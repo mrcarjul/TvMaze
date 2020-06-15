@@ -3,6 +3,9 @@ import React, {useEffect, useMemo} from 'react';
 // Core
 import {ScrollView, StyleSheet, View} from 'react-native';
 
+// Assets
+import images from '../assets/images';
+
 // Personalized components
 import {Header, SectionContainer, SectionHeader, Summary} from '../components';
 
@@ -35,10 +38,13 @@ function ShowDetailScreen({navigation}) {
   const {genres, name, image, network, schedule, summary, webChannel} =
     selected_show || {};
   const {medium} = image || {};
-  const uri = useMemo(() => ({uri: medium}), [medium]);
+  const uri = useMemo(() => ({uri: medium || images.show_image}), [medium]);
   const {time, days} = schedule || {}; // Could be empty
   const parsedSummary = parseStringToObject(summary || '');
 
+  /**
+   * @description request episodes info
+   */
   useEffect(() => {
     dispatch(getShowEpisodesByIdAction(show_id));
   }, [dispatch, show_id]);
