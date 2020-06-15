@@ -1,16 +1,17 @@
 import React, {useEffect} from 'react';
 
 // Core
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 
 // Personalized components
-import {SectionContainer, SectionHeader, Summary} from '../components';
+import {Header, SectionContainer, SectionHeader, Summary} from '../components';
 
 // External libs
 import FastImage from 'react-native-fast-image';
 import {SharedElement} from 'react-navigation-shared-element';
 
 // Utils
+import PropTypes from 'prop-types';
 import {
   fonts,
   getThemeColors,
@@ -31,9 +32,8 @@ function ShowDetailScreen({navigation}) {
   const {themeColorType} = useSelector(state => state.themes);
   const dispatch = useDispatch();
   const colors = getThemeColors(themeColorType);
-  const {textStyle} = fonts;
   const selected_show = shows.find(show => show.id === show_id);
-  const {genres, name, id, image, schedule, summary} = selected_show || {};
+  const {genres, name, image, network, schedule, summary} = selected_show || {};
   const {time, days} = schedule || {}; // Could be empty
   const parsedSummary = parseStringToObject(summary || '');
 
@@ -43,9 +43,7 @@ function ShowDetailScreen({navigation}) {
 
   return (
     <View style={[styles.container, {backgroundColor: colors.backgroundAlt}]}>
-      <Text style={[styles.marginContent, textStyle.centeredSectionTitle]}>
-        Serie Detail
-      </Text>
+      <Header title="Serie Detail" canBack />
       <SectionHeader title={name} centered />
       <ScrollView>
         <View style={[styles.centerContents, styles.marginContent]}>
@@ -58,6 +56,7 @@ function ShowDetailScreen({navigation}) {
           </SharedElement>
         </View>
         <SectionContainer title="Genres" payload={genres} />
+        <SectionContainer title="Network" payload={network.name} />
         <SectionContainer
           title="Schedule"
           payload={days}
@@ -68,7 +67,13 @@ function ShowDetailScreen({navigation}) {
         <View style={styles.summaryContainer}>
           <Summary objectElements={parsedSummary} />
         </View>
-        <SectionContainer title="" payload={null} />
+        <SectionContainer
+          colors={colors}
+          title="Episodes"
+          payload={episodes}
+          episodes
+          navigation={navigation}
+        />
       </ScrollView>
     </View>
   );
@@ -93,5 +98,9 @@ const styles = StyleSheet.create({
 ShowDetailScreen.sharedElements = (route, otherRoute, showing) => [
   {id: `show.${route.params.show_id}`, resize: 'none'},
 ];
+
+ShowDetailScreen.propTypes = {
+  navigation: PropTypes.object,
+};
 
 export default ShowDetailScreen;
