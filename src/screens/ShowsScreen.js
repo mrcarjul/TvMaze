@@ -5,6 +5,8 @@ import {FlatList, StyleSheet, Text, View} from 'react-native';
 
 // Personalized components
 import {
+  Empty,
+  Footer,
   Header,
   ListLoader,
   SearchInput,
@@ -27,13 +29,10 @@ const ITEM_HEIGHT = metrics.width / 2 / metrics.imageRatio + 150;
  */
 function ShowsScreen({navigation}) {
   const flatListRef = useRef(null);
-  const {error, errorMsg, fetching, shows, page} = useSelector(
-    state => state.shows,
-  );
+  const {fetching, shows, page} = useSelector(state => state.shows);
   const {themeColorType} = useSelector(state => state.themes);
   const dispatch = useDispatch();
   const colors = getThemeColors(themeColorType);
-  const {textStyle} = fonts;
 
   const requestShows = useCallback(() => {
     dispatch(getShowsByPageAction(0));
@@ -73,6 +72,7 @@ function ShowsScreen({navigation}) {
       <SearchInput flatListRef={flatListRef} />
       <View style={styles.container}>
         <FlatList
+          ListEmptyComponent={Empty}
           data={shows}
           extraData={shows}
           getItemLayout={getItemLayout}
@@ -88,14 +88,10 @@ function ShowsScreen({navigation}) {
           ref={flatListRef}
           windowSize={5}
         />
-        {error && (
-          <View style={[styles.container, styles.centerContents]}>
-            <Text style={textStyle.centeredNormal}>{errorMsg}</Text>
-          </View>
-        )}
         <ListLoader fetching={fetching} />
         <ScrollToTopFab flatListRef={flatListRef} />
       </View>
+      <Footer />
     </View>
   );
 }
