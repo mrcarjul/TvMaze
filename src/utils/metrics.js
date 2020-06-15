@@ -7,7 +7,7 @@ const metrics = {
   height,
   icon: 24,
   margin: 14,
-  paddingLeft: 12,
+  padding: 12,
   marginHorizontal: 10,
   marginVertical: 20,
   radius: 7,

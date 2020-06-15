@@ -19,8 +19,8 @@ function SectionHeader({centered, title}) {
   const {themeColorType} = useSelector(state => state.themes);
   const colors = getThemeColors(themeColorType);
   const {textStyle} = fonts;
-  const {centeredTitle, sectionTitle} = textStyle;
-  const headerTextStyle = centered ? centeredTitle : sectionTitle;
+  const {centeredSectionTitle, sectionTitle} = textStyle;
+  const headerTextStyle = centered ? centeredSectionTitle : sectionTitle;
   return (
     <View style={[styles.headerContainer, {backgroundColor: colors.primary}]}>
       <Text style={[headerTextStyle, {color: colors.textSecondaryAlt}]}>
@@ -34,8 +34,8 @@ const styles = StyleSheet.create({
   ...genericStyles,
   headerContainer: {
     justifyContent: 'center',
-    height: metrics.section,
-    paddingLeft: metrics.paddingLeft,
+    minHeight: metrics.section,
+    padding: metrics.padding,
   },
 });
 

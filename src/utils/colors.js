@@ -2,7 +2,7 @@ const lightThemeColors = {
   primary: '#3C948B',
   background: '#3F3F3F',
   backgroundAlt: '#fefefe',
-  backgroundSecondaryAlt: '#3F3F3F',
+  backgroundSecondaryAlt: '#f1f1f1',
   text: '#0a0a0a',
   textAlt: '#b9e3de',
   textSecondaryAlt: '#fefefe',
