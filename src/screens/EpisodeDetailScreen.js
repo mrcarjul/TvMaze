@@ -3,14 +3,14 @@ import React from 'react';
 // Core
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 
+// Assets
+import images from '../assets/images';
+
 // Personalized components
 import {Header, SectionContainer, SectionHeader, Summary} from '../components';
 
 // External libs
 import FastImage from 'react-native-fast-image';
-
-// Images
-import images from '../assets/images';
 
 // Utils
 import {
@@ -44,7 +44,7 @@ function EpisodeDetailScreen({navigation}) {
         <View style={[styles.centerContents, styles.marginContent]}>
           <FastImage
             resizeMode={FastImage.resizeMode.contain}
-            source={image?.medium ? {uri: image?.medium} : images.noimage}
+            source={image?.medium ? {uri: image?.medium} : images.episode_image}
             style={styles.imageStyle}
           />
         </View>
