@@ -11,23 +11,25 @@ import PropTypes from 'prop-types';
 import {fonts, genericStyles, metrics} from '../utils';
 
 // Redux
-import {setShowId} from '../redux/actions/shows';
+import {setShowIdAction} from '../redux/actions/shows';
+import {connect} from 'react-redux';
 
 class Show extends React.PureComponent {
-  onPressShow = () => {
-    const {id, navigation} = this.props;
+  onSelectShow = () => {
+    const {id, navigation, setShowId} = this.props;
     setShowId(id);
     navigation.navigate('ShowDetail');
   };
 
   render() {
-    const {colors, name, poster} = this.props;
+    const {colors, disabled, name, poster} = this.props;
     const {textStyle} = fonts;
 
     return (
       <TouchableOpacity
-        onPress={this.onPressShow}
-        style={[styles.centerContents, styles.shadows, styles.showContainer]}>
+        onPress={this.onSelectShow}
+        style={[styles.centerContents, styles.shadows, styles.showContainer]}
+        disabled={disabled}>
         <FastImage
           resizeMode={FastImage.resizeMode.contain}
           source={{uri: poster?.medium}}
@@ -37,7 +39,7 @@ class Show extends React.PureComponent {
           style={[
             styles.titleContainer,
             styles.centerContents,
-            {backgroundColor: colors.background},
+            {backgroundColor: colors.primary},
           ]}>
           <Text
             style={[
@@ -76,11 +78,20 @@ const styles = StyleSheet.create({
 });
 
 Show.propTypes = {
-  colors: PropTypes.object,
-  id: PropTypes.number,
-  name: PropTypes.string,
+  colors: PropTypes.object.isRequired,
+  disabled: PropTypes.bool,
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
   navigation: PropTypes.object,
-  poster: PropTypes.string,
+  poster: PropTypes.object.isRequired,
+  setShowId: PropTypes.func.isRequired,
 };
 
-export default Show;
+const mapDispatchToProps = dispatch => ({
+  setShowId: id => dispatch(setShowIdAction(id)),
+});
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(Show);
