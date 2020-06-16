@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import './src/utils/wydr';
 
-import React from 'react';
+import React, {useEffect} from 'react';
 
 // Core
 import {View, Platform} from 'react-native';
@@ -12,6 +12,7 @@ import {TvMazeStatusbar} from './src/components';
 // External Libs
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import SplashScreen from 'react-native-splash-screen';
 
 // Navigation
 import AppNavigator from './src/navigation';
@@ -31,6 +32,13 @@ function App() {
     AntDesign.loadFont();
     MaterialIcons.loadFont();
   }
+
+  /**
+   * @description on load remove splash
+   */
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
 
   return (
     <Provider store={store}>

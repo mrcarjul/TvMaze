@@ -1,7 +1,10 @@
 import React, {useCallback, useEffect, useRef} from 'react';
 
 // Core
-import {FlatList, StyleSheet, Text, View} from 'react-native';
+import {FlatList, StyleSheet, View} from 'react-native';
+
+// Hooks
+import {useDebouncedCallback} from '../hooks';
 
 // Personalized components
 import {
@@ -16,7 +19,7 @@ import {
 
 // Utils
 import PropTypes from 'prop-types';
-import {fonts, getThemeColors, genericStyles, metrics} from '../utils';
+import {getThemeColors, genericStyles, metrics} from '../utils';
 
 // Redux
 import {useDispatch, useSelector} from 'react-redux';
@@ -29,7 +32,9 @@ const ITEM_HEIGHT = metrics.width / 2 / metrics.imageRatio + 150;
  */
 function ShowsScreen({navigation}) {
   const flatListRef = useRef(null);
-  const {fetching, shows, page} = useSelector(state => state.shows);
+  const {fetching, shows, page, searchByQuery} = useSelector(
+    state => state.shows,
+  );
   const {themeColorType} = useSelector(state => state.themes);
   const dispatch = useDispatch();
   const colors = getThemeColors(themeColorType);
@@ -41,6 +46,8 @@ function ShowsScreen({navigation}) {
   const requestMoreShows = useCallback(() => {
     dispatch(getShowsByPageAction(page + 1));
   }, [dispatch, page]);
+
+  const [debouncedRequestMore] = useDebouncedCallback(requestMoreShows, 300);
 
   const getItemLayout = useCallback((data, index) => {
     return {length: ITEM_HEIGHT, offset: ITEM_HEIGHT * index, index};
@@ -80,9 +87,7 @@ function ShowsScreen({navigation}) {
           keyExtractor={getKey}
           maxToRenderPerBatch={10}
           onEndReached={
-            shows.length !== 0 && shows.length % 240 === 0
-              ? requestMoreShows
-              : null
+            shows.length !== 0 && !searchByQuery ? debouncedRequestMore : null
           }
           renderItem={renderItem}
           ref={flatListRef}

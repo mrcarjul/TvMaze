@@ -28,6 +28,7 @@ class ShowCard extends React.PureComponent {
   render() {
     const {colors, disabled, id, name, poster} = this.props;
     const {textStyle} = fonts;
+    const image = poster ? {uri: poster} : images.show_image;
 
     return (
       <TouchableOpacity
@@ -37,7 +38,7 @@ class ShowCard extends React.PureComponent {
         <SharedElement id={`show.${id}`}>
           <FastImage
             resizeMode={FastImage.resizeMode.contain}
-            source={{uri: poster || images.show_image}}
+            source={image}
             style={styles.imageStyle}
           />
         </SharedElement>
@@ -91,7 +92,7 @@ ShowCard.propTypes = {
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   navigation: PropTypes.object,
-  poster: PropTypes.string.isRequired,
+  poster: PropTypes.string,
   setShowId: PropTypes.func.isRequired,
 };
 

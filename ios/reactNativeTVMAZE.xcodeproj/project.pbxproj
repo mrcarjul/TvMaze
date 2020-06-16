@@ -18,6 +18,7 @@
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* reactNativeTVMAZETests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* reactNativeTVMAZETests.m */; };
 		83D66744ACA94B6B298D047C /* libPods-reactNativeTVMAZE-reactNativeTVMAZETests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AF4130BD2AC8F382A750966 /* libPods-reactNativeTVMAZE-reactNativeTVMAZETests.a */; };
+		A3DA704724984CF300528391 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3DA704624984CF300528391 /* SplashScreen.storyboard */; };
 		CC38D53CD37BE9231EBB29AF /* libPods-reactNativeTVMAZE-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B110E8AA98F12DC71E6EFA /* libPods-reactNativeTVMAZE-tvOS.a */; };
 		CF6089CB392E64CE847E217B /* libPods-reactNativeTVMAZE-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DACCB49FA75548B9FF06EF5A /* libPods-reactNativeTVMAZE-tvOSTests.a */; };
 /* End PBXBuildFile section */
@@ -61,6 +62,7 @@
 		95B110E8AA98F12DC71E6EFA /* libPods-reactNativeTVMAZE-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-reactNativeTVMAZE-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9879A6BE52EF4711B9D5EE1E /* Pods-reactNativeTVMAZE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reactNativeTVMAZE.release.xcconfig"; path = "Target Support Files/Pods-reactNativeTVMAZE/Pods-reactNativeTVMAZE.release.xcconfig"; sourceTree = "<group>"; };
 		A2D5845C4AF37EEBC99DEDE5 /* libPods-reactNativeTVMAZE.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-reactNativeTVMAZE.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3DA704624984CF300528391 /* SplashScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SplashScreen.storyboard; sourceTree = "<group>"; };
 		D3F9BF389C03837B2FD7F6C7 /* Pods-reactNativeTVMAZE-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reactNativeTVMAZE-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-reactNativeTVMAZE-tvOSTests/Pods-reactNativeTVMAZE-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D664C9F7F5DB3FBF5F3F8CC9 /* Pods-reactNativeTVMAZE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reactNativeTVMAZE.debug.xcconfig"; path = "Target Support Files/Pods-reactNativeTVMAZE/Pods-reactNativeTVMAZE.debug.xcconfig"; sourceTree = "<group>"; };
 		DACCB49FA75548B9FF06EF5A /* libPods-reactNativeTVMAZE-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-reactNativeTVMAZE-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,6 +134,7 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				A3DA704624984CF300528391 /* SplashScreen.storyboard */,
 			);
 			name = reactNativeTVMAZE;
 			sourceTree = "<group>";
@@ -194,7 +197,6 @@
 				D3F9BF389C03837B2FD7F6C7 /* Pods-reactNativeTVMAZE-tvOSTests.debug.xcconfig */,
 				04FB1BD775E06EFF8D6C450D /* Pods-reactNativeTVMAZE-tvOSTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -341,6 +343,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				A3DA704724984CF300528391 /* SplashScreen.storyboard in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
