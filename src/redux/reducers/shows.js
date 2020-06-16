@@ -14,6 +14,7 @@ const initialState = {
   episode_id: null,
   show_id: null,
   page: 0,
+  searchByQuery: false,
   shows: [],
   episodes: [],
 };
@@ -45,6 +46,7 @@ export default function shows(state = initialState, action) {
         error: null,
         errorMsg: null,
         page: action.page || 0,
+        searchByQuery: typeof action.page === 'number' ? false : true,
       };
     case REQUEST_SHOWS_EPISODES_DATA_SUCCESS:
       return {
