@@ -12,10 +12,9 @@ import {useSelector} from 'react-redux';
 
 /**
  * @description Basic Header component
- * @param {boolean} canBack if true show back button
  * @param {string} title
  */
-function Header({canBack, title}) {
+function Header({title}) {
   const {themeColorType} = useSelector(state => state.themes);
   const colors = getThemeColors(themeColorType);
   const {textStyle} = fonts;
@@ -29,7 +28,8 @@ function Header({canBack, title}) {
             ? [styles.headerTitleContainer, styles.centerContents]
             : [styles.headerTitleContainer, styles.centerVertical]
         }>
-        <Text style={[textStyle.centeredTitle, {color: colors.text}]}>
+        <Text
+          style={[textStyle.centeredTitle, {color: colors.text}]}>
           {title}
         </Text>
       </View>
@@ -54,7 +54,6 @@ const styles = StyleSheet.create({
 });
 
 Header.propTypes = {
-  canBack: PropTypes.bool,
   title: PropTypes.string.isRequired,
 };
 
