@@ -64,7 +64,9 @@ function ShowDetailScreen({navigation}) {
       <Header title="Serie Detail" canBack />
       <SectionHeader title={name} centered />
       <ScrollView>
-        <View style={[styles.centerContents, styles.marginContent]}>
+        <View
+          collapsable={false}
+          style={[styles.centerContents, styles.marginContent]}>
           <SharedElement id={`show.${show_id}`}>
             <FastImage
               resizeMode={FastImage.resizeMode.contain}
