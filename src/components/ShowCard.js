@@ -1,7 +1,13 @@
 import React from 'react';
 
 // Core
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  PixelRatio,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 
 // Assets
 import images from '../assets/images';
@@ -33,21 +39,21 @@ class ShowCard extends React.PureComponent {
     return (
       <TouchableOpacity
         onPress={this.onSelectShow}
-        style={[styles.centerContents, styles.shadows, styles.showContainer]}
+        style={[
+          styles.centerContents,
+          styles.shadows,
+          styles.showContainer,
+          {backgroundColor: colors.primary},
+        ]}
         disabled={disabled}>
         <SharedElement id={`show.${id}`}>
           <FastImage
             resizeMode={FastImage.resizeMode.contain}
             source={image}
-            style={styles.imageStyle}
+            style={[styles.imageStyle, {backgroundColor: colors.primary}]}
           />
         </SharedElement>
-        <View
-          style={[
-            styles.titleContainer,
-            styles.centerContents,
-            {backgroundColor: colors.primary},
-          ]}>
+        <View style={[styles.titleContainer, styles.centerContents]}>
           <Text
             style={[
               styles.text,
@@ -67,22 +73,24 @@ const styles = StyleSheet.create({
   imageStyle: {
     borderTopLeftRadius: metrics.radius,
     borderTopRightRadius: metrics.radius,
-    height: metrics.width / 2 / metrics.imageRatio,
-    width: metrics.width / 2,
+    borderBottomWidth: 0,
+    height: PixelRatio.roundToNearestPixel(
+      metrics.width / 1.5 / metrics.imageRatio,
+    ),
+    width: PixelRatio.roundToNearestPixel(metrics.width / 1.5),
   },
   showContainer: {
+    borderRadius: metrics.radius,
     marginVertical: 15,
-    marginHorizontal: metrics.width / 4,
-    width: metrics.width / 2,
+    marginHorizontal: PixelRatio.roundToNearestPixel(metrics.width / 6),
+    width: PixelRatio.roundToNearestPixel(metrics.width / 1.5),
   },
   text: {
     padding: 10,
   },
   titleContainer: {
-    borderBottomLeftRadius: metrics.radius,
-    borderBottomRightRadius: metrics.radius,
-    minHeight: 100,
-    width: metrics.width / 2,
+    minHeight: PixelRatio.roundToNearestPixel(100),
+    width: PixelRatio.roundToNearestPixel(metrics.width / 1.5),
   },
 });
 
