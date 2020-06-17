@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Core
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 
 // Assets
 import images from '../assets/images';
@@ -24,9 +24,9 @@ import {
 import {useSelector} from 'react-redux';
 
 /**
- * @description The purpose of the screen is to show selected show details
+ * @description The purpose of the screen is to show selected episode details
  */
-function EpisodeDetailScreen({navigation}) {
+function EpisodeDetailScreen() {
   const {episodes, episode_id} = useSelector(state => state.shows);
   const {themeColorType} = useSelector(state => state.themes);
   const colors = getThemeColors(themeColorType);
