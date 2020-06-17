@@ -20,7 +20,12 @@ function Header({title}) {
   const {textStyle} = fonts;
 
   return (
-    <View style={[styles.headerContainer, styles.row]}>
+    <View
+      style={[
+        styles.headerContainer,
+        styles.row,
+        {backgroundColor: colors.primary},
+      ]}>
       <View style={styles.container} />
       <View
         style={
@@ -29,7 +34,7 @@ function Header({title}) {
             : [styles.headerTitleContainer, styles.centerVertical]
         }>
         <Text
-          style={[textStyle.centeredTitle, {color: colors.text}]}>
+          style={[textStyle.centeredTitle, {color: colors.textSecondaryAlt}]}>
           {title}
         </Text>
       </View>
@@ -44,6 +49,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   headerContainer: {
+    alignItems: 'center',
     marginVertical: 5,
     height: metrics.section,
     width: metrics.width,
