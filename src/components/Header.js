@@ -50,7 +50,6 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     alignItems: 'center',
-    marginVertical: 5,
     height: metrics.section,
     width: metrics.width,
   },
