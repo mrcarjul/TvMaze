@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Core
-import {ScrollView, StyleSheet, View} from 'react-native';
+import {PixelRatio, ScrollView, StyleSheet, View} from 'react-native';
 
 // Assets
 import images from '../assets/images';
@@ -35,6 +35,9 @@ function EpisodeDetailScreen() {
   const parsedSummary = parseStringToObject(
     summary || '<p>No information yet</p>',
   );
+  const episodeImage = image?.medium
+    ? {uri: image.medium}
+    : images.episode_image;
 
   return (
     <View style={[styles.container, {backgroundColor: colors.backgroundAlt}]}>
@@ -44,7 +47,7 @@ function EpisodeDetailScreen() {
         <View style={[styles.centerContents, styles.marginContent]}>
           <FastImage
             resizeMode={FastImage.resizeMode.contain}
-            source={image?.medium ? {uri: image?.medium} : images.episode_image}
+            source={episodeImage}
             style={styles.imageStyle}
           />
         </View>
@@ -65,10 +68,9 @@ const styles = StyleSheet.create({
     marginVertical: metrics.marginVertical,
   },
   imageStyle: {
-    aspectRatio: 1.7,
     borderRadius: metrics.radius,
-    height: undefined,
-    width: metrics.width / 1.5,
+    height: PixelRatio.roundToNearestPixel(metrics.width / 1.5 / 1.7),
+    width: PixelRatio.roundToNearestPixel(metrics.width / 1.5),
   },
   summaryContainer: {
     marginHorizontal: metrics.marginHorizontal,
