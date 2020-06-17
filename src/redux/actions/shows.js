@@ -60,7 +60,9 @@ const getShowsOnlyUsableData = payload =>
   payload.map(show => ({
     genres: show.genres,
     id: show.id,
-    image: show.image,
+    image: {
+      medium: show.image?.medium?.replace('http', 'https'),
+    },
     name: show.name,
     network: show.network,
     schedule: show.schedule,
@@ -74,7 +76,9 @@ const getShowsOnlyUsableData = payload =>
 const getEpisodesOnlyUsableData = payload =>
   payload.map(episode => ({
     id: episode.id,
-    image: episode.image,
+    image: {
+      medium: episode.image?.medium?.replace('http', 'https'),
+    },
     name: episode.name,
     number: episode.number,
     season: episode.season,
@@ -101,6 +105,7 @@ export const getShowsByPageAction = page => async dispatch => {
       dispatch(requestDataFailure(badResponse));
     }
   } catch (error) {
+    console.log('error', error);
     dispatch(requestDataFailure(networkError));
   }
 };

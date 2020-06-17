@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useRef} from 'react';
 
 // Core
-import {FlatList, StyleSheet, View} from 'react-native';
+import {FlatList, PixelRatio, StyleSheet, View} from 'react-native';
 
 // Hooks
 import {useDebouncedCallback} from '../hooks';
@@ -25,7 +25,9 @@ import {getThemeColors, genericStyles, metrics} from '../utils';
 import {useDispatch, useSelector} from 'react-redux';
 import {getShowsByPageAction} from '../redux/actions/shows';
 
-const ITEM_HEIGHT = metrics.width / 2 / metrics.imageRatio + 150;
+const ITEM_HEIGHT = PixelRatio.roundToNearestPixel(
+  metrics.width / 1.5 / metrics.imageRatio + 130,
+);
 
 /**
  * @description The purpose of the screen is to be the main screen to display shows list
@@ -79,6 +81,8 @@ function ShowsScreen({navigation}) {
       <SearchInput flatListRef={flatListRef} />
       <View style={styles.container}>
         <FlatList
+          keyboardShouldPersistTaps="always"
+          keyboardDismissMode="handled"
           ListEmptyComponent={Empty}
           data={shows}
           extraData={shows}
