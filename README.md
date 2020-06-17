@@ -13,12 +13,14 @@ Yarn was used for package management
 
 yarn install
 
-2. Install pods 
+2. Install pods
+
 cd ios && pod install
 
 To run Android/iOS projects run
 
 npx react-native run-android
+
 npx react-native run-ios
 
 # Description of features applied
